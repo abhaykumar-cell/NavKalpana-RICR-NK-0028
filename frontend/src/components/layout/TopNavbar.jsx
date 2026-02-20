@@ -43,7 +43,7 @@ const TopNavbar = ({ toggleDrawer, open }) => {
 
     // 🔥 Example logout logic
     localStorage.removeItem("token"); // if using token
-    navigate("/login"); // redirect to login page
+    navigate("/"); // redirect to login page
   };
 
   return (
