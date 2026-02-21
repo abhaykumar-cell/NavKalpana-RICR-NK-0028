@@ -1,7 +1,14 @@
 package com.navkalpana.dto.request;
 
 
-public class RegisterTeacher {
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
+import lombok.Data;
+
+@Data
+public class LoginTeacher {
 
     @NotBlank(message = "Email is required")
     @Email(message = "Invalid email format")
@@ -14,3 +21,4 @@ public class RegisterTeacher {
             message = "Password must contain uppercase, lowercase, number and special character"
     )
     private String password;
+}
