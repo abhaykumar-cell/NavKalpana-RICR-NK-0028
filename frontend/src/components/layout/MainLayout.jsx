@@ -2,12 +2,11 @@ import { Box } from "@mui/material";
 import { useState } from "react";
 import Sidebar from "./Sidebar";
 import TopNavbar from "./TopNavbar";
-
+import { Outlet } from "react-router-dom";
 const drawerWidth = 240;
 
 const MainLayout = ({ children }) => {
-  const [open, setOpen] = useState(false);
-
+  const [open, setOpen] = useState(true); 
   const toggleDrawer = () => {
     setOpen(prev => !prev);
   };
@@ -17,23 +16,33 @@ const MainLayout = ({ children }) => {
   };
 
   return (
-    <Box sx={{ display: "flex", minHeight: "100vh" }}>
+    <Box sx={{ display: "flex", minHeight: "100vh", background: "#f9fafb" }}>
 
-     
+      {/* Sidebar */}
       <Sidebar open={open} closeDrawer={closeDrawer} />
 
+      {/* Main Content Area */}
       <Box
         sx={{
           flexGrow: 1,
           marginLeft: open ? `${drawerWidth}px` : "0px",
           transition: "margin 0.3s ease",
-          width: "100%",
+          display: "flex",
+          flexDirection: "column",
+          minHeight: "100vh",
         }}
-        onClick={() => open && closeDrawer()}
       >
+        {/* Navbar */}
         <TopNavbar open={open} toggleDrawer={toggleDrawer} />
 
-        <Box sx={{ p: 4 }}>
+        {/* Scrollable Content */}
+        <Box
+          sx={{
+            flexGrow: 1,
+            p: { xs: 2, md: 4 },
+            overflowY: "auto",
+          }}
+        >
           {children}
         </Box>
       </Box>
