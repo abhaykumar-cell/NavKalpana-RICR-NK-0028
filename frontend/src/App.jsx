@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Dashboard from "./pages/Dashboard";
+import Batch from "./components/batch/BathPage"
 import Login from "./components/auth/Login"
 import ProtectedRoute from "./components/auth/ProtectedRoutes";
 import { ToastContainer } from "react-toastify";
@@ -16,6 +17,14 @@ function App() {
               <Dashboard />
             </ProtectedRoute>
           }
+          
+        />
+        <Route path="/batches" element={
+            <ProtectedRoute>
+              <Batch />
+            </ProtectedRoute>
+          }
+          
         />
       </Routes>
     </BrowserRouter>
