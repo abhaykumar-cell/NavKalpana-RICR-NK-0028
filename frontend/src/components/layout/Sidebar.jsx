@@ -22,7 +22,7 @@ const Sidebar = ({ open, closeDrawer }) => {
   const menuItems = [
     { text: "Dashboard", path: "/dashboard", icon: <DashboardIcon /> },
     { text: "Batch Management", path: "/batches", icon: <SchoolIcon /> },
-    { text: "Assessment Management", path: "/assessments", icon: <AssignmentIcon /> },
+{ text: "Assessment Management", path: "/assessment-management", icon: <AssignmentIcon /> },
     { text: "Student Management", path: "/students", icon: <PeopleIcon /> },
     { text: "Support Requests", path: "/support", icon: <SupportAgentIcon /> },
   ];
@@ -56,7 +56,7 @@ const Sidebar = ({ open, closeDrawer }) => {
                 key={item.text}
                 component={NavLink}
                 to={item.path}
-                onClick={closeDrawer}   // 🔥 close on menu click
+                onClick={closeDrawer}  
                 sx={{
                   mx: 1,
                   borderRadius: 1,
