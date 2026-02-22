@@ -7,7 +7,6 @@ const axiosInstance = axios.create({
   },
 });
 
-// Attach Access Token Automatically
 axiosInstance.interceptors.request.use((config) => {
   const token = localStorage.getItem("accessToken");
 

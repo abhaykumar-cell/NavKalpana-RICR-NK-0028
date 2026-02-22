@@ -14,14 +14,17 @@ import {
   Paper,
   Avatar,
   Stack,
+  Tooltip,
 } from "@mui/material";
 import InfoIcon from "@mui/icons-material/Info";
+import GitHubIcon from "@mui/icons-material/GitHub";
+import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import { getAttendanceColor } from "../../utils/attendanceColor";
 
 const StudentTable = ({ students, onOpen }) => {
   return (
     <Box>
-      {/* 🔥 Gradient Header (same as assessment) */}
+      {/* ⭐ Header */}
       <Box
         sx={{
           mb: 3,
@@ -39,7 +42,7 @@ const StudentTable = ({ students, onOpen }) => {
         </Typography>
       </Box>
 
-      {/* 🔥 Table Card */}
+      {/* ⭐ Table Card */}
       <Card
         sx={{
           borderRadius: 3,
@@ -59,6 +62,8 @@ const StudentTable = ({ students, onOpen }) => {
                   <TableCell><b>Attendance</b></TableCell>
                   <TableCell><b>Email</b></TableCell>
                   <TableCell><b>Phone</b></TableCell>
+                  <TableCell><b>GitHub</b></TableCell>
+                  <TableCell><b>LinkedIn</b></TableCell>
                   <TableCell align="right"><b>Action</b></TableCell>
                 </TableRow>
               </TableHead>
@@ -73,22 +78,26 @@ const StudentTable = ({ students, onOpen }) => {
                       "&:hover": { backgroundColor: "#f9fafb" },
                     }}
                   >
+                    {/* Avatar */}
                     <TableCell>
-                      <Avatar>{s.name[0]}</Avatar>
+                      <Avatar>{s.name?.[0]}</Avatar>
                     </TableCell>
 
+                    {/* Basic info */}
                     <TableCell>{s.name}</TableCell>
                     <TableCell>{s.enrollmentId}</TableCell>
                     <TableCell>{s.course}</TableCell>
 
+                    {/* Modules */}
                     <TableCell>
-                      <Stack direction="row" spacing={1}>
-                        {s.modules.map((m) => (
+                      <Stack direction="row" spacing={1} flexWrap="wrap">
+                        {s.modules?.map((m) => (
                           <Chip key={m} label={m} size="small" />
                         ))}
                       </Stack>
                     </TableCell>
 
+                    {/* Attendance */}
                     <TableCell>
                       <Chip
                         label={`${s.attendance}%`}
@@ -98,9 +107,41 @@ const StudentTable = ({ students, onOpen }) => {
                       />
                     </TableCell>
 
+                    {/* Contact */}
                     <TableCell>{s.email}</TableCell>
                     <TableCell>{s.phone}</TableCell>
 
+                    {/* ⭐ GitHub */}
+                    <TableCell>
+                      <Tooltip title="Open GitHub">
+                        <IconButton
+                          size="small"
+                          component="a"
+                          href={s.github}
+                          target="_blank"
+                          disabled={!s.github}
+                        >
+                          <GitHubIcon />
+                        </IconButton>
+                      </Tooltip>
+                    </TableCell>
+
+                    {/* ⭐ LinkedIn */}
+                    <TableCell>
+                      <Tooltip title="Open LinkedIn">
+                        <IconButton
+                          size="small"
+                          component="a"
+                          href={s.linkedin}
+                          target="_blank"
+                          disabled={!s.linkedin}
+                        >
+                          <LinkedInIcon color="primary" />
+                        </IconButton>
+                      </Tooltip>
+                    </TableCell>
+
+                    {/* Action */}
                     <TableCell align="right">
                       <IconButton size="small" onClick={() => onOpen(s)}>
                         <InfoIcon />
@@ -112,7 +153,7 @@ const StudentTable = ({ students, onOpen }) => {
             </Table>
           </TableContainer>
 
-          {/* ⭐ Empty state same pattern */}
+          {/* ⭐ Empty state */}
           {students.length === 0 && (
             <Box textAlign="center" py={6}>
               <Typography variant="h6" fontWeight={600}>

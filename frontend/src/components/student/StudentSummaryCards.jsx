@@ -11,13 +11,13 @@ const SummaryCard = ({ title, value, color, bg, icon }) => (
       background: bg,
       transition: "0.3s",
       height: "100%",
-      '&:hover': {
-        transform: 'translateY(-4px)',
+      "&:hover": {
+        transform: "translateY(-4px)",
         boxShadow: 6,
       },
     }}
   >
-     <CardContent>
+    <CardContent>
       <Stack direction="row" justifyContent="space-between" alignItems="center">
         <Box>
           <Typography variant="body2" sx={{ opacity: 0.8 }}>
@@ -38,18 +38,25 @@ const SummaryCard = ({ title, value, color, bg, icon }) => (
             justifyContent: "center",
             background: "rgba(255,255,255,0.25)",
           }}
-        > 
-           {icon}
+        >
+          {icon}
         </Box>
       </Stack>
     </CardContent>
   </Card>
 );
 
-const StudentSummaryCards = ({ students }) => {
-  const total = students.length;
-  const ongoing = students.filter((s) => s.status === "ongoing").length;
-  const completed = students.filter((s) => s.status === "completed").length;
+const StudentSummaryCards = ({ students = [], summary }) => {
+
+  const total = summary?.total ?? students.length;
+
+  const ongoing =
+    summary?.ongoing ??
+    students.filter((s) => s.status?.toLowerCase() === "ongoing").length;
+
+  const completed =
+    summary?.completed ??
+    students.filter((s) => s.status?.toLowerCase() === "completed").length;
 
   return (
     <Grid container spacing={3} mb={2}>
@@ -62,7 +69,8 @@ const StudentSummaryCards = ({ students }) => {
           icon={<PeopleAltIcon sx={{ color: "white" }} />}
         />
       </Grid>
-       <Grid item xs={12} sm={6} md={4}>
+
+      <Grid item xs={12} sm={6} md={4}>
         <SummaryCard
           title="Ongoing"
           value={ongoing}

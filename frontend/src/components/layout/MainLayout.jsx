@@ -18,10 +18,9 @@ const MainLayout = ({ children }) => {
   return (
     <Box sx={{ display: "flex", minHeight: "100vh", background: "#f9fafb" }}>
 
-      {/* Sidebar */}
+     
       <Sidebar open={open} closeDrawer={closeDrawer} />
 
-      {/* Main Content Area */}
       <Box
         sx={{
           flexGrow: 1,
@@ -35,7 +34,6 @@ const MainLayout = ({ children }) => {
         {/* Navbar */}
         <TopNavbar open={open} toggleDrawer={toggleDrawer} />
 
-        {/* Scrollable Content */}
         <Box
           sx={{
             flexGrow: 1,
