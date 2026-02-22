@@ -33,6 +33,17 @@ export default function Login() {
     e.preventDefault();
     setErrorMsg("");
     setLoading(true);
+ if (localStorage.getItem("accessToken") !== null) {
+  localStorage.removeItem("accessToken");
+}
+
+if (localStorage.getItem("refreshToken") !== null) {
+  localStorage.removeItem("refreshToken");
+}
+
+if (localStorage.getItem("tokenType") !== null) {
+  localStorage.removeItem("tokenType");
+}
 
     try {
       const res = await loginUser(email, password);
