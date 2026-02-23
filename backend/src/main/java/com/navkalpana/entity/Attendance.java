@@ -38,7 +38,7 @@ public class Attendance {
     @Column(nullable = false)
     private AttendanceStatus status;
 
-    @Column(nullable = false, length = 300)
+    @Column(length = 300)
     private String remark;
 
     @CreationTimestamp

@@ -7,6 +7,7 @@ import com.navkalpana.entity.AssignmentSubmission;
 import com.navkalpana.entity.Attendance;
 import com.navkalpana.entity.Batch;
 import com.navkalpana.entity.Student;
+import com.navkalpana.exceptions.ResourceNotFoundException;
 import com.navkalpana.repo.BatchRepository;
 import com.navkalpana.repo.StudentRepository;
 import com.navkalpana.services.StudentService;
@@ -151,7 +152,8 @@ public class StudentServiceImpl implements StudentService {
     public List<Student> saveAllStudents(List<Student> students) {
 
         for (Student student : students) {
-
+            Batch batchtemp =batchRepo.findById(student.getBatch().getId()).orElseThrow(()->new ResourceNotFoundException("Batch not found with id " + student.getBatch().getId()));
+            batchtemp.setTotalStudents(batchtemp.getTotalStudents() + 1);
             if (student.getBatch() == null || student.getBatch().getId() == null) {
                 throw new RuntimeException("Batch ID is required for student: " + student.getName());
             }

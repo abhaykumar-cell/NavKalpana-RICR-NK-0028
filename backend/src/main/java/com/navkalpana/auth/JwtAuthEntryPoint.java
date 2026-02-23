@@ -11,11 +11,9 @@ import jakarta.servlet.http.HttpServletResponse;
 @Component
 public class JwtAuthEntryPoint implements AuthenticationEntryPoint {
     @Override
-    public void commence(HttpServletRequest request, HttpServletResponse response,
-                         AuthenticationException authException) throws IOException, ServletException {
+    public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException authException) throws IOException, ServletException {
         response.setContentType("application/json");
         response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-        response.getWriter().write("{ \"error\": \"Unauthorized: Invalid or missing token\" }");
-
+        response.getWriter().write("{\"error\":\"Unauthorized:Invalid or missing token\"}");
     }
 }

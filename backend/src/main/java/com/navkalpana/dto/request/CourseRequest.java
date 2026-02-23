@@ -20,5 +20,6 @@ public class CourseRequest {
         DSA,
         AI,
         DATA_SCIENCE
+        ,PROGRAMMING
     }
 }

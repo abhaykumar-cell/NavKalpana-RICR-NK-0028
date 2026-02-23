@@ -48,6 +48,8 @@ public class Course {
         WEB,
         DSA,
         AI,
-        DATA_SCIENCE
+        DATA_SCIENCE,
+        PROGRAMMING,
+
     }
 }
