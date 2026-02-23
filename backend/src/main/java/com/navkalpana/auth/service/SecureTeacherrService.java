@@ -1,4 +1,4 @@
-package com.navkalpana.auth.repo.auth.service;
+package com.navkalpana.auth.service;
 
 import com.navkalpana.auth.repo.TeacherRepository;
 import com.navkalpana.entity.Teacher;
@@ -8,9 +8,10 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
-
+@Service
 public class SecureTeacherrService implements UserDetailsService {
     private TeacherRepository teacherRepository;
     public SecureTeacherrService(TeacherRepository teacherRepository) {
