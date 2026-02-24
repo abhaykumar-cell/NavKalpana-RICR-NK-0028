@@ -1,5 +1,6 @@
 package com.navkalpana.exceptions;
 
+import com.navkalpana.dto.respose.ApiResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.AuthenticationException;
@@ -18,20 +19,18 @@ import java.util.Map;
 public class GlobalExceptionHandler {
 
 
-    @ExceptionHandler(IllegalArgumentException.class)
-    public ResponseEntity<String> handleIllegalArgumentException(IllegalArgumentException ex) {
-        return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);
 
-    }
-    @ExceptionHandler(ConstraintViolationException.class)
-    public ResponseEntity<String> handleConstraintViolationException(ConstraintViolationException ex) {
-        return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<ApiResponse<?>> handleAll(Exception ex) {
+        System.out.println(ex.getMessage());
+        return ResponseEntity
+                .status(HttpStatus.INTERNAL_SERVER_ERROR)
+                .body(ApiResponse.error(
+                        HttpStatus.INTERNAL_SERVER_ERROR.value(),
+                        ex.getMessage()
+                ));
     }
 
-    @ExceptionHandler(AuthenticationException.class)
-    public ResponseEntity<String> handleAuthenticationException(AuthenticationException ex) {
-        return new ResponseEntity<>("Invalid credentials", HttpStatus.UNAUTHORIZED);
-    }
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<Map<String,String>>handleMethodArgumentNotValidException(MethodArgumentNotValidException ex){
         Map<String,String>errors=new HashMap<>();

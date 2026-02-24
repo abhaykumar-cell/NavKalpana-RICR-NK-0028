@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 
@@ -26,6 +28,13 @@ public class Batch {
     private Integer totalStudents;
     @Column(name = "progress_percentage")
     private Double progressPercentage;
+    @OneToMany(
+            mappedBy = "batch",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true,
+            fetch = FetchType.LAZY
+    )
+    private List<Student> students = new ArrayList<>();
 
     @Enumerated(EnumType.STRING)
     private Status status;

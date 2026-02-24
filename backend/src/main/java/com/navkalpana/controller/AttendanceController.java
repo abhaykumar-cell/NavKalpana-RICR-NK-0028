@@ -1,12 +1,16 @@
 package com.navkalpana.controller;
 
-
 import com.navkalpana.dto.request.BulkAttendanceRequest;
+import com.navkalpana.dto.respose.ApiResponse;
+import com.navkalpana.dto.respose.AttendanceResponse;
+import com.navkalpana.dto.respose.StudentSimpleResponse;
 import com.navkalpana.entity.Attendance;
-import com.navkalpana.entity.Student;
-import com.navkalpana.service.AttendanceService;
+import com.navkalpana.services.implementation.AttendanceService;
+
 import lombok.RequiredArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.http.ResponseEntity;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
@@ -23,58 +27,123 @@ public class AttendanceController {
     // 1️⃣ LOAD REGISTER (All Students of Batch)
     // =====================================================
     @GetMapping("/register/{batchId}")
-    public List<Student> loadRegister(@PathVariable Long batchId) {
-        return attendanceService.loadRegister(batchId);
+    public ResponseEntity<ApiResponse<List<StudentSimpleResponse>>> loadRegister(
+            @PathVariable Long batchId) {
+
+        List<StudentSimpleResponse> students =
+                attendanceService.loadRegister(batchId);
+
+        return ResponseEntity.ok(
+                ApiResponse.success(
+                        HttpStatus.OK.value(),
+                        "Students fetched successfully",
+                        students
+                )
+        );
     }
 
     // =====================================================
     // 2️⃣ MARK BULK ATTENDANCE (Register Style)
     // =====================================================
     @PostMapping("/mark-bulk")
-    public List<Attendance> markBulkAttendance(
+    public ResponseEntity<ApiResponse<List<AttendanceResponse>>> markBulkAttendance(
             @RequestBody BulkAttendanceRequest request) {
 
-        return attendanceService.markBulkAttendance(request);
+        List<AttendanceResponse> savedAttendance =
+                attendanceService.markBulkAttendance(request);
+
+        return ResponseEntity.status(HttpStatus.CREATED).body(
+                ApiResponse.success(
+                        HttpStatus.CREATED.value(),
+                        "Attendance marked successfully",
+                        savedAttendance
+                )
+        );
     }
 
     // =====================================================
-    // 3️⃣ EDIT ATTENDANCE (10 Min Rule)
+    // 3️⃣ EDIT ATTENDANCE (10 Min Rule, Remark Optional)
     // =====================================================
     @PutMapping("/edit/{attendanceId}")
-    public Attendance editAttendance(
+    public ResponseEntity<ApiResponse<AttendanceResponse>> editAttendance(
             @PathVariable Long attendanceId,
             @RequestParam Attendance.AttendanceStatus status,
-            @RequestParam String remark) {
+            @RequestParam(required = false) String remark) {
 
-        return attendanceService.editAttendance(attendanceId, status, remark);
+        AttendanceResponse updated =
+                attendanceService.editAttendance(attendanceId, status, remark);
+
+        return ResponseEntity.ok(
+                ApiResponse.success(
+                        HttpStatus.OK.value(),
+                        "Attendance updated successfully",
+                        updated
+                )
+        );
     }
 
     // =====================================================
     // 4️⃣ VIEW ATTENDANCE BY BATCH
     // =====================================================
     @GetMapping("/batch/{batchId}")
-    public List<Attendance> getByBatch(@PathVariable Long batchId) {
-        return attendanceService.getAttendanceByBatch(batchId);
+    public ResponseEntity<ApiResponse<List<AttendanceResponse>>> getByBatch(
+            @PathVariable Long batchId) {
+
+        List<AttendanceResponse> attendanceList =
+                attendanceService.getAttendanceByBatch(batchId);
+
+        return ResponseEntity.ok(
+                ApiResponse.success(
+                        HttpStatus.OK.value(),
+                        "Attendance list fetched successfully",
+                        attendanceList
+                )
+        );
     }
 
     // =====================================================
     // 5️⃣ VIEW ATTENDANCE BY STUDENT
     // =====================================================
     @GetMapping("/student/{studentId}")
-    public List<Attendance> getByStudent(@PathVariable Long studentId) {
-        return attendanceService.getAttendanceByStudent(studentId);
+    public ResponseEntity<ApiResponse<List<AttendanceResponse>>> getByStudent(
+            @PathVariable Long studentId) {
+
+        List<AttendanceResponse> attendanceList =
+                attendanceService.getAttendanceByStudent(studentId);
+
+        return ResponseEntity.ok(
+                ApiResponse.success(
+                        HttpStatus.OK.value(),
+                        "Student attendance fetched successfully",
+                        attendanceList
+                )
+        );
     }
 
     // =====================================================
     // 6️⃣ VIEW REGISTER FOR SPECIFIC DATE
     // =====================================================
     @GetMapping("/batch/{batchId}/date")
-    public List<Attendance> getByBatchAndDate(
+    public ResponseEntity<ApiResponse<List<AttendanceResponse>>> getByBatchAndDate(
             @PathVariable Long batchId,
             @RequestParam
             @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
-            LocalDate date) {
+            LocalDate date
+    ) {
 
-        return attendanceService.getAttendanceByBatchAndDate(batchId, date);
+        List<AttendanceResponse> attendanceList =
+                attendanceService.getAttendanceByBatchAndDate(batchId, date);
+
+        String message = attendanceList.isEmpty()
+                ? "No attendance found for selected date"
+                : "Attendance fetched successfully";
+
+        return ResponseEntity.ok(
+                ApiResponse.success(
+                        HttpStatus.OK.value(),
+                        message,
+                        attendanceList
+                )
+        );
     }
 }

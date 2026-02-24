@@ -7,6 +7,7 @@ import com.navkalpana.dto.request.CourseRequest;
 import com.navkalpana.dto.respose.ApiResponse;
 
 import com.navkalpana.dto.respose.CourseResponse;
+import com.navkalpana.dto.respose.StudentListResponse;
 import com.navkalpana.services.implementation.CourseService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -31,6 +32,16 @@ public class CourseController {
                 HttpStatus.CREATED.value(),
                 "Course created successfully",
                 courseService.createCourse(request)
+        );
+    }
+    @GetMapping("/{id}/students")
+    public ApiResponse<List<StudentListResponse>> getStudentsByCourse(
+            @PathVariable Long id) {
+
+        return ApiResponse.success(
+                200,
+                "Students fetched successfully",
+                courseService.getStudentsByCourse(id)
         );
     }
 

@@ -1,7 +1,5 @@
 package com.navkalpana.repo;
 
-
-
 import com.navkalpana.entity.Attendance;
 import com.navkalpana.entity.Batch;
 import com.navkalpana.entity.Student;
@@ -23,10 +21,8 @@ public interface AttendanceRepository extends JpaRepository<Attendance, Long> {
 
     List<Attendance> findByStudent(Student student);
 
-    List<Attendance> findByBatchAndDate(
-            Batch batch,
-            LocalDate date
-    );
+    // 🔥 Best Method
+    List<Attendance> findByBatch_IdAndDate(Long batchId, LocalDate date);
 
     boolean existsByBatchAndDate(Batch batch, LocalDate date);
 }

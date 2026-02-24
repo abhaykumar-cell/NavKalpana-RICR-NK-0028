@@ -1,13 +1,19 @@
 package com.navkalpana.dto.respose;
 
 import com.navkalpana.entity.Student;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
 
+
+@AllArgsConstructor
 @Data
 @Builder
+@NoArgsConstructor
+
 public class StudentListResponse {
     private Long id;
     private String name;
@@ -25,4 +31,5 @@ public class StudentListResponse {
     private String linkedin;
 
     private Student.StudentStatus status;
+
 }

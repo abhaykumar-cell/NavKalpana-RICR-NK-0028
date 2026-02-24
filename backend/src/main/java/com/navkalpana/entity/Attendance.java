@@ -1,5 +1,6 @@
 package com.navkalpana.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
@@ -56,6 +57,7 @@ public class Attendance {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "batch_id", nullable = false)
+    @JsonIgnore
     private Batch batch;
 
     public enum AttendanceStatus {
