@@ -11,7 +11,7 @@ import BatchListPage from "./pages/BatchListPage";
 import CourseListPage from "./pages/CourseListPage";
 import BatchStudentsPage from "./pages/BatchStudentsPage";
 import CourseStudentsPage from "./pages/CourseStudentsPage";
-
+import SupportPage from "../src/components/batch/componets/support/SupportPage";
 function App() {
   return (
     <BrowserRouter>
@@ -45,7 +45,14 @@ function App() {
             </ProtectedRoute>
           }
         />
-
+<Route
+  path="/support"
+  element={
+    <ProtectedRoute>
+      <SupportPage />
+    </ProtectedRoute>
+  }
+/>
         {/* ⭐ BATCH LIST */}
         <Route
           path="/student-management/batches"

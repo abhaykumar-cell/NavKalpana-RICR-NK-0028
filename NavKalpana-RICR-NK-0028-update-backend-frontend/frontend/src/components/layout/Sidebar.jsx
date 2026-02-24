@@ -27,15 +27,16 @@ const Sidebar = ({ open, closeDrawer }) => {
       path: "/assessment-management",
       icon: <AssignmentIcon />,
     },
-
-    // ✅ FIXED PATH
     {
       text: "Student Management",
       path: "/student-management",
       icon: <PeopleIcon />,
     },
-
-    { text: "Support Requests", path: "/support", icon: <SupportAgentIcon /> },
+    {
+      text: "Support Requests",
+      path: "/support",
+      icon: <SupportAgentIcon />,
+    },
   ];
 
   return (
@@ -44,7 +45,7 @@ const Sidebar = ({ open, closeDrawer }) => {
         width: open ? drawerWidth : 0,
         transition: "width 0.3s ease",
         overflowX: "hidden",
-        background: "#111827",
+        backgroundColor: "#111827",
         color: "#fff",
         minHeight: "100vh",
         position: "fixed",
@@ -71,8 +72,12 @@ const Sidebar = ({ open, closeDrawer }) => {
                 sx={{
                   mx: 1,
                   borderRadius: 1,
+                  color: "#fff",
                   "&.active": {
                     backgroundColor: "#6C63FF",
+                  },
+                  "&:hover": {
+                    backgroundColor: "#374151",
                   },
                 }}
               >

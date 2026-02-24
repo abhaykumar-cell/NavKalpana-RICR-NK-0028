@@ -2,13 +2,14 @@ import { Box } from "@mui/material";
 import { useState } from "react";
 import Sidebar from "./Sidebar";
 import TopNavbar from "./TopNavbar";
-import { Outlet } from "react-router-dom";
+
 const drawerWidth = 240;
 
 const MainLayout = ({ children }) => {
-  const [open, setOpen] = useState(true); 
+  const [open, setOpen] = useState(true);
+
   const toggleDrawer = () => {
-    setOpen(prev => !prev);
+    setOpen((prev) => !prev);
   };
 
   const closeDrawer = () => {
@@ -16,37 +17,29 @@ const MainLayout = ({ children }) => {
   };
 
   return (
-    <Box sx={{ display: "flex", minHeight: "100vh", background: "#f9fafb" }}>
-
+    <Box sx={{ display: "flex", minHeight: "100vh" }}>
+      
       {/* Sidebar */}
       <Sidebar open={open} closeDrawer={closeDrawer} />
 
-      {/* Main Content Area */}
+      {/* Main Content */}
       <Box
         sx={{
           flexGrow: 1,
-          marginLeft: open ? `${drawerWidth}px` : "0px",
+          marginLeft: open ? `${drawerWidth}px` : 0,
           transition: "margin 0.3s ease",
           display: "flex",
           flexDirection: "column",
-          minHeight: "100vh",
         }}
       >
         {/* Navbar */}
         <TopNavbar open={open} toggleDrawer={toggleDrawer} />
 
-        {/* Scrollable Content */}
-        <Box
-          sx={{
-            flexGrow: 1,
-            p: { xs: 2, md: 4 },
-            overflowY: "auto",
-          }}
-        >
-          {children}
+        {/* Page Content */}
+        <Box sx={{ p: 3 }}>
+          {children}   {/* 🔥 IMPORTANT CHANGE */}
         </Box>
       </Box>
-
     </Box>
   );
 };
