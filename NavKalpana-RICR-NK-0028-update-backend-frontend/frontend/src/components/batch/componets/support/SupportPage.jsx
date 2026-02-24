@@ -10,13 +10,24 @@ import {
   Chip,
   Button,
   CircularProgress,
+  Stack,
+  IconButton,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogActions,
 } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import SupportAgentIcon from "@mui/icons-material/SupportAgent";
+import CloseIcon from "@mui/icons-material/Close";
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
+import { toast } from "react-toastify";
 import MainLayout from "../../../layout/MainLayout";
-import { getSupports } from "../../../../api/supportService";
+import {
+  getSupports,
+  deleteSupport,
+} from "../../../../api/supportService";
 import SupportReplyDialog from "./components/SupportReplyDialog";
 
 const SupportPage = () => {
@@ -24,22 +35,19 @@ const SupportPage = () => {
   const [loading, setLoading] = useState(false);
   const [search, setSearch] = useState("");
   const [selectedSupport, setSelectedSupport] = useState(null);
+  const [deleteId, setDeleteId] = useState(null);
 
   /* ===============================
-     FETCH SUPPORTS FROM BACKEND
+     FETCH SUPPORTS
   =============================== */
   const fetchSupports = async () => {
     try {
       setLoading(true);
-
-      const data = await getSupports(); // ✅ backend returns array
-        console.log(data);
-        
+      const data = await getSupports();
       setSupports(data || []);
-
     } catch (err) {
-      console.error("Error fetching supports:", err);
-      setSupports([]);
+      console.error(err);
+      toast.error("Failed to load supports");
     } finally {
       setLoading(false);
     }
@@ -50,8 +58,19 @@ const SupportPage = () => {
   }, []);
 
   /* ===============================
-     LOCAL SEARCH FILTER
+     HANDLE DELETE
   =============================== */
+  const handleDelete = async () => {
+    try {
+      await deleteSupport(deleteId);
+      toast.success("Support deleted successfully");
+      setDeleteId(null);
+      fetchSupports();
+    } catch (err) {
+      toast.error("Delete failed");
+    }
+  };
+
   const filteredSupports = supports.filter((item) =>
     item.topic?.toLowerCase().includes(search.toLowerCase())
   );
@@ -72,9 +91,7 @@ const SupportPage = () => {
           <Box
             display="flex"
             justifyContent="space-between"
-            alignItems={{ xs: "flex-start", md: "center" }}
-            flexDirection={{ xs: "column", md: "row" }}
-            gap={2}
+            alignItems="center"
             mb={4}
           >
             <Typography variant="h4" fontWeight={800}>
@@ -86,11 +103,7 @@ const SupportPage = () => {
               placeholder="Search by topic..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              sx={{
-                width: { xs: "100%", md: 280 },
-                bgcolor: "#fff",
-                borderRadius: 2,
-              }}
+              sx={{ width: 280, bgcolor: "#fff", borderRadius: 2 }}
               InputProps={{
                 startAdornment: (
                   <InputAdornment position="start">
@@ -110,41 +123,45 @@ const SupportPage = () => {
             <Grid container spacing={4}>
               {filteredSupports.map((item) => (
                 <Grid item xs={12} md={6} key={item.id}>
-                  <motion.div whileHover={{ scale: 1.03 }}>
-                    <Card
-                      sx={{
-                        borderRadius: 3,
-                        boxShadow: "0 10px 25px rgba(0,0,0,0.08)",
-                      }}
-                    >
+                  <motion.div whileHover={{ scale: 1.02 }}>
+                    <Card sx={{ borderRadius: 3 }}>
                       <CardContent>
                         <Box
                           display="flex"
                           justifyContent="space-between"
                           alignItems="center"
-                          mb={1}
                         >
                           <Typography variant="h6" fontWeight={700}>
                             {item.topic}
                           </Typography>
 
-                          <Chip
-                            label={item.status}
-                            color={
-                              item.status === "PENDING"
-                                ? "warning"
-                                : item.status === "IN_PROGRESS"
-                                ? "info"
-                                : "success"
-                            }
-                          />
+                          {/* SMALL CROSS ICON */}
+                          <IconButton
+                            size="small"
+                            color="primary"
+                            onClick={() => setDeleteId(item.id)}
+                          >
+                            <CloseIcon fontSize="small" />
+                          </IconButton>
                         </Box>
 
-                        <Typography variant="body2">
+                        <Chip
+                          label={item.status}
+                          color={
+                            item.status === "PENDING"
+                              ? "warning"
+                              : item.status === "IN_PROGRESS"
+                              ? "info"
+                              : "success"
+                          }
+                          sx={{ mt: 1 }}
+                        />
+
+                        <Typography mt={2}>
                           <b>Student:</b> {item.studentName}
                         </Typography>
 
-                        <Typography variant="body2">
+                        <Typography>
                           <b>Course:</b> {item.courseName}
                         </Typography>
 
@@ -152,15 +169,16 @@ const SupportPage = () => {
                           {item.description}
                         </Typography>
 
-                        <Box mt={2}>
+                        <Stack direction="row" spacing={2} mt={3}>
                           <Button
+                            size="small"
                             variant="contained"
                             startIcon={<SupportAgentIcon />}
                             onClick={() => setSelectedSupport(item)}
                           >
                             View & Reply
                           </Button>
-                        </Box>
+                        </Stack>
                       </CardContent>
                     </Card>
                   </motion.div>
@@ -170,16 +188,34 @@ const SupportPage = () => {
           )}
         </Container>
 
-        {/* DIALOG */}
+        {/* REPLY DIALOG */}
         {selectedSupport && (
           <SupportReplyDialog
             support={selectedSupport}
             onClose={() => {
               setSelectedSupport(null);
-              fetchSupports(); // 🔥 refresh after reply/resolve
+              fetchSupports();
             }}
           />
         )}
+
+        {/* DELETE CONFIRMATION DIALOG */}
+        <Dialog open={Boolean(deleteId)} onClose={() => setDeleteId(null)}>
+          <DialogTitle>Delete Support?</DialogTitle>
+          <DialogContent>
+            Are you sure you want to delete this support request?
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={() => setDeleteId(null)}>Cancel</Button>
+            <Button
+              variant="contained"
+              color="error"
+              onClick={handleDelete}
+            >
+              Delete
+            </Button>
+          </DialogActions>
+        </Dialog>
       </Box>
     </MainLayout>
   );

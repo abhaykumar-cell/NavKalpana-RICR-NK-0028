@@ -18,4 +18,6 @@ public interface SupportRequestService {
     SupportRequestResponse markResolved(Long id);
 
     SupportRequestResponse scheduleBackup(Long id, BackupScheduleRequest request);
+
+    void delete(Long id);
 }

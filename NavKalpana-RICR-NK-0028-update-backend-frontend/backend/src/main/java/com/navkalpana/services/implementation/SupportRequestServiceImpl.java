@@ -79,6 +79,8 @@ public class SupportRequestServiceImpl implements SupportRequestService {
                 .collect(Collectors.toList());
     }
 
+
+
     @Override
     public SupportRequestResponse reply(Long id, ReplyRequest request) {
         SupportRequest support = repository.findById(id)
@@ -131,5 +133,14 @@ public class SupportRequestServiceImpl implements SupportRequestService {
                 .createdAt(support.getCreatedAt())
                 .resolvedAt(support.getResolvedAt())
                 .build();
+    }
+
+    @Override
+    public void delete(Long id) {
+
+        SupportRequest support = repository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Support not found with ID: " + id));
+
+        repository.delete(support);
     }
 }

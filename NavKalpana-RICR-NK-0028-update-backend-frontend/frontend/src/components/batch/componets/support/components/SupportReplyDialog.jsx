@@ -11,21 +11,24 @@ import {
   CircularProgress,
 } from "@mui/material";
 import { useState } from "react";
+import { toast } from "react-toastify";
 import {
   replySupport,
   markResolved,
 } from "../../../../../api/supportService";
 
-const SupportReplyDialog = ({ support, onClose }) => {
-  const [reply, setReply] = useState(support.teacherResponse || "");
+const SupportReplyDialog = ({ support, onClose, onSuccess }) => {
+  const [reply, setReply] = useState(support?.teacherResponse || "");
   const [loading, setLoading] = useState(false);
 
+  const isValid = reply.trim().length > 0;
+
   /* ===============================
-     HANDLE REPLY
+     SEND REPLY
   =============================== */
   const handleReply = async () => {
-    if (!reply.trim()) {
-      alert("Please write a reply");
+    if (!isValid) {
+      toast.warning("Please write a reply");
       return;
     }
 
@@ -33,71 +36,100 @@ const SupportReplyDialog = ({ support, onClose }) => {
       setLoading(true);
 
       await replySupport(support.id, {
-        teacherResponse: reply, // ✅ FIXED KEY
+        teacherResponse: reply,
       });
 
-      alert("Reply Sent Successfully!");
-      onClose(); // ✅ close dialog
+      toast.success("Reply sent successfully!");
+
+      if (onSuccess) {
+        await onSuccess(); // refresh support list
+      }
+
+      onClose(); // close dialog only (no redirect)
+
     } catch (error) {
-      console.error("Reply error:", error);
-      alert("Something went wrong");
+      console.error("Reply Error:", error);
+      toast.error("Failed to send reply");
     } finally {
       setLoading(false);
     }
   };
 
   /* ===============================
-     HANDLE RESOLVE
+     MARK RESOLVED
   =============================== */
   const handleResolve = async () => {
+    if (!isValid) {
+      toast.warning("Please write a reply before resolving");
+      return;
+    }
+
     try {
       setLoading(true);
 
+      // First send reply
+      await replySupport(support.id, {
+        teacherResponse: reply,
+      });
+
+      // Then mark resolved
       await markResolved(support.id);
 
-      alert("Marked as Resolved!");
-      onClose(); // ✅ close dialog
+      toast.success("Support marked as resolved!");
+
+      if (onSuccess) {
+        await onSuccess();
+      }
+
+      onClose();
+
     } catch (error) {
-      console.error("Resolve error:", error);
-      alert("Something went wrong");
+      console.error("Resolve Error:", error);
+      toast.error("Failed to resolve support");
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <Dialog open onClose={onClose} fullWidth maxWidth="sm">
+    <Dialog open={Boolean(support)} onClose={onClose} fullWidth maxWidth="sm">
       <DialogTitle>Support Request</DialogTitle>
 
       <DialogContent dividers>
-        <Typography variant="h6">{support.topic}</Typography>
+        {/* Topic */}
+        <Typography variant="h6" fontWeight={600}>
+          {support?.topic}
+        </Typography>
 
+        {/* Status */}
         <Chip
-          label={support.status}
+          label={support?.status}
           color={
-            support.status === "PENDING"
+            support?.status === "PENDING"
               ? "warning"
-              : support.status === "IN_PROGRESS"
+              : support?.status === "IN_PROGRESS"
               ? "info"
               : "success"
           }
           sx={{ mt: 1 }}
         />
 
+        {/* Student + Course */}
         <Box mt={2}>
           <Typography>
-            <b>Student:</b> {support.studentName}
+            <b>Student:</b> {support?.studentName}
           </Typography>
 
           <Typography>
-            <b>Course:</b> {support.courseName}
+            <b>Course:</b> {support?.courseName}
           </Typography>
 
           <Typography mt={2}>
-            {support.description}
+            {support?.description}
           </Typography>
         </Box>
 
+        {/* Reply Field */}
         <TextField
           fullWidth
           multiline
@@ -106,6 +138,8 @@ const SupportReplyDialog = ({ support, onClose }) => {
           value={reply}
           onChange={(e) => setReply(e.target.value)}
           sx={{ mt: 3 }}
+          error={!isValid && reply.length > 0}
+          helperText={!isValid && reply.length > 0 ? "Reply is required" : ""}
         />
       </DialogContent>
 
@@ -117,17 +151,18 @@ const SupportReplyDialog = ({ support, onClose }) => {
         <Button
           variant="contained"
           onClick={handleReply}
-          disabled={loading}
+          disabled={loading || !isValid}
         >
           {loading ? <CircularProgress size={20} /> : "Send Reply"}
         </Button>
 
         <Button
+          variant="contained"
           color="success"
           onClick={handleResolve}
-          disabled={loading}
+          disabled={loading || !isValid}
         >
-          Mark Resolved
+          {loading ? <CircularProgress size={20} /> : "Mark Resolved"}
         </Button>
       </DialogActions>
     </Dialog>

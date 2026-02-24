@@ -73,4 +73,10 @@ public class SupportRequestController {
 
         return ResponseEntity.ok(response);
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> deleteSupport(@PathVariable Long id) {
+        supportRequestService.delete(id);
+        return ResponseEntity.ok("Support deleted successfully");
+    }
 }
