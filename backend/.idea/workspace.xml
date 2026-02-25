@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="ded5a82a-7581-4712-846f-68d55abab44a" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/navkalpana/controller/AssignmentController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/navkalpana/controller/AssingmentSubbmitions.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/navkalpana/controller/AttendanceController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/navkalpana/controller/LessonController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/navkalpana/controller/QuizController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/navkalpana/controller/SupportRequestController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/navkalpana/dto/request/AssignmentRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/navkalpana/dto/request/BackupScheduleRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/navkalpana/dto/request/BulkAttendanceRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/navkalpana/dto/request/EvaluationRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/navkalpana/dto/request/LessonRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/navkalpana/dto/request/QuizQuestionRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/navkalpana/dto/request/QuizRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/navkalpana/dto/request/ReplyRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/navkalpana/dto/request/SubmissionRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/navkalpana/dto/request/SupportCreateRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/navkalpana/dto/respose/AssignmentResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/navkalpana/dto/respose/LessonResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/navkalpana/dto/respose/QuizQuestionResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/navkalpana/dto/respose/QuizResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/navkalpana/dto/respose/StudentSimpleResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/navkalpana/dto/respose/SupportRequestResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/navkalpana/entity/SubmissionStatus.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/navkalpana/exceptions/ResourceNotFoundException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/navkalpana/repo/AssignmentRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/navkalpana/repo/AssignmentSubmissionRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/navkalpana/repo/LessonRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/navkalpana/repo/QuizQuestionRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/navkalpana/repo/QuizRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/navkalpana/repo/SupportRequestRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/navkalpana/services/AssignmentEvaluationService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/navkalpana/services/AssignmentService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/navkalpana/services/LessonService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/navkalpana/services/QuizService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/navkalpana/services/SupportCreateRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/navkalpana/services/SupportRequestService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/navkalpana/services/implementation/AssignmentEvaluationServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/navkalpana/services/implementation/AssignmentServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/navkalpana/services/implementation/AttendanceService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/navkalpana/services/implementation/LessonServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/navkalpana/services/implementation/QuizServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/navkalpana/services/implementation/SupportRequestServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/navkalpana/auth/JwtAuthEntryPoint.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/navkalpana/auth/JwtAuthEntryPoint.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/navkalpana/auth/JwtRequestFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/navkalpana/auth/JwtRequestFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/navkalpana/auth/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/navkalpana/auth/SecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/navkalpana/controller/CourseController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/navkalpana/controller/CourseController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/navkalpana/dto/request/CourseRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/navkalpana/dto/request/CourseRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/navkalpana/dto/respose/AttendanceResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/navkalpana/dto/respose/AttendanceResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/navkalpana/dto/respose/StudentListResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/navkalpana/dto/respose/StudentListResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/navkalpana/entity/AssignmentSubmission.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/navkalpana/entity/AssignmentSubmission.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/navkalpana/entity/Attendance.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/navkalpana/entity/Attendance.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/navkalpana/entity/Batch.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/navkalpana/entity/Batch.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/navkalpana/entity/Course.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/navkalpana/entity/Course.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/navkalpana/entity/Quiz.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/navkalpana/entity/Quiz.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/navkalpana/entity/QuizAttempt.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/navkalpana/entity/QuizAttempt.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/navkalpana/entity/QuizQuestion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/navkalpana/entity/QuizQuestion.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/navkalpana/exceptions/GlobalExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/navkalpana/exceptions/GlobalExceptionHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/navkalpana/repo/AttendanceRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/navkalpana/repo/AttendanceRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/navkalpana/repo/CourseRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/navkalpana/repo/CourseRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/navkalpana/repo/StudentRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/navkalpana/repo/StudentRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/navkalpana/services/implementation/AttendanceServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/navkalpana/services/implementation/AttendanceServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/navkalpana/services/implementation/CourseService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/navkalpana/services/implementation/CourseService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/navkalpana/services/implementation/StudentServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/navkalpana/services/implementation/StudentServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHomeTypeForPersistence" value="WRAPPER" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 1
+}</component>
+  <component name="ProjectId" id="39tdH5lVmOHfj6tRkX6m8MYyVlN" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.BackendApplication.executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "Spring Boot.BackendApplication.executor": "Run",
+    "git-widget-placeholder": "student-management-updated",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "F:/NavKalpana-RICR-NK-0028-main/backend/src/main/java/com/navkalpana/services/implementation",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
+  },
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "mysql"
+    ]
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="com.navkalpana.entity" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="F:\NavKalpana-RICR-NK-0028-main\backend\src\main\java\com\navkalpana\services\implementation" />
+      <recent name="F:\NavKalpana-RICR-NK-0028-main\backend\src\main\java\com\navkalpana\services" />
+      <recent name="F:\NavKalpana-RICR-NK-0028-main\backend\src\main\java\com\navkalpana\repo" />
+      <recent name="F:\NavKalpana-RICR-NK-0028-main\backend\src\main\java\com\navkalpana\dto\respose" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.BackendApplication">
+    <configuration name="BackendApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.navkalpana.BackendApplication" />
+      <module name="backend" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.navkalpana.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="BackendApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+      <module name="backend" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.navkalpana.BackendApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.BackendApplication" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="ded5a82a-7581-4712-846f-68d55abab44a" name="Changes" comment="" />
+      <created>1771519212102</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1771519212102</updated>
+      <workItem from="1771519213889" duration="12597000" />
+      <workItem from="1771568161511" duration="9539000" />
+      <workItem from="1771607080969" duration="6756000" />
+      <workItem from="1771620743432" duration="1940000" />
+      <workItem from="1771735146453" duration="3776000" />
+      <workItem from="1771738969014" duration="1176000" />
+      <workItem from="1771744027484" duration="2134000" />
+      <workItem from="1771748010672" duration="4803000" />
+      <workItem from="1771781721825" duration="11363000" />
+      <workItem from="1771825807487" duration="6133000" />
+      <workItem from="1771844029810" duration="805000" />
+      <workItem from="1771845082672" duration="171000" />
+      <workItem from="1771865462459" duration="17034000" />
+      <workItem from="1771908483615" duration="4273000" />
+      <workItem from="1771920728294" duration="8953000" />
+      <workItem from="1771937180873" duration="5730000" />
+      <workItem from="1771952611062" duration="92000" />
+      <workItem from="1771952722166" duration="2494000" />
+      <workItem from="1771959127896" duration="1743000" />
+      <workItem from="1771961269543" duration="6833000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="UnknownFeatures">
+    <option featureType="com.intellij.fileTypeFactory" implementationName="application.properties" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/navkalpana/services/implementation/BatchServiceImpl.java</url>
+          <line>38</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>
