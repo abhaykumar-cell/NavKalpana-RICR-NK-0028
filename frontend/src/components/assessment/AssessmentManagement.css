@@ -1,0 +1,52 @@
+.assessment-container {
+  padding: 40px;
+  background-color: #f5f7fb;
+  min-height: 100vh;
+}
+
+.assessment-title {
+  margin-bottom: 30px;
+  font-weight: 600;
+  color: #1a1a1a;
+}
+
+.course-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 25px;
+}
+
+.course-card {
+  border-radius: 16px !important;
+  padding: 10px;
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+}
+
+.course-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.12) !important;
+}
+
+.course-name {
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.course-type {
+  color: #666;
+  font-size: 14px;
+}
+
+.course-batch {
+  margin-top: 5px;
+  margin-bottom: 15px;
+  font-size: 13px;
+  color: #888;
+}
+
+.lesson-btn {
+  margin-top: 10px !important;
+  border-radius: 8px !important;
+  text-transform: none !important;
+}

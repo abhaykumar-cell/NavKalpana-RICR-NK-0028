@@ -1,0 +1,176 @@
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Dashboard from "./pages/Dashboard";
+import Batch from "./components/batch/BathPage";
+import AssessmentManagement from "./components/assessment/AssessmentManagement";
+import StudentManagement from "./pages/StudentManagement";
+import Login from "./components/auth/Login";
+import ProtectedRoute from "./components/auth/ProtectedRoutes";
+import { ToastContainer } from "react-toastify";
+import AttendanceManagementPage from "./components/Attendance/AttendanceManagementPage";
+import AssessmentCoursePage from "./components/assessment/AssessmentCoursePage";
+import AssessmentLessonPage from "./components/assessment/AssessmentLessionPage";
+import BatchListPage from "./pages/BatchListPage";
+import CourseListPage from "./pages/CourseListPage";
+import BatchStudentsPage from "./pages/BatchStudentsPage";
+import CourseStudentsPage from "./pages/CourseStudentsPage";
+import SupportPage from "../src/components/batch/componets/support/SupportPage";
+import ClassAnalytics from "./components/Analytics3/ClassAnalysis";
+import BatchAnalytics from "./components/Analytics3/BatchAnalytics"; 
+function App() {
+  return (
+    <BrowserRouter>
+      <ToastContainer position="top-right" autoClose={3000} />
+
+      <Routes>
+        {/* ===============================
+              PUBLIC ROUTE
+        =============================== */}
+        <Route path="/" element={<Login />} />
+
+        {/* ===============================
+              PROTECTED ROUTES
+        =============================== */}
+
+        <Route
+          path="/dashboard"
+          element={
+            <ProtectedRoute>
+              <Dashboard />
+            </ProtectedRoute>
+          }
+        />
+
+<Route
+          path="/analytics/batch/:batchId"
+          element={
+            <ProtectedRoute>
+              <BatchAnalytics />
+            </ProtectedRoute>
+          }
+        />
+ <Route
+          path="/analytics"
+          element={
+            <ProtectedRoute>
+              <ClassAnalytics />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+  path="/assessment-management"
+  element={
+    <ProtectedRoute>
+      <AssessmentManagement />
+    </ProtectedRoute>
+  }
+/>
+
+<Route
+  path="/assessment-management/course/:courseId"
+  element={
+    <ProtectedRoute>
+      <AssessmentCoursePage />
+    </ProtectedRoute>
+  }
+/>
+
+<Route
+  path="/assessment-management/lesson/:lessonId"
+  element={
+    <ProtectedRoute>
+      <AssessmentLessonPage />
+    </ProtectedRoute>
+  }
+/>
+
+        {/* ⭐ STUDENT MANAGEMENT LANDING */}
+        <Route
+          path="/student-management"
+          element={
+            <ProtectedRoute>
+              <StudentManagement />
+            </ProtectedRoute>
+          }
+        />
+<Route
+  path="/support"
+  element={
+    <ProtectedRoute>
+      <SupportPage />
+    </ProtectedRoute>
+  }
+/>
+        {/* ⭐ BATCH LIST */}
+        <Route
+          path="/student-management/batches"
+          element={
+            <ProtectedRoute>
+              <BatchListPage />
+            </ProtectedRoute>
+          }
+        />
+
+        {/* ⭐ BATCH STUDENTS */}
+        <Route
+          path="/batch/:id/students"
+          element={
+            <ProtectedRoute>
+              <BatchStudentsPage />
+            </ProtectedRoute>
+          }
+        />
+
+        {/* ⭐ COURSE LIST */}
+        <Route
+          path="/student-management/courses"
+          element={
+            <ProtectedRoute>
+              <CourseListPage />
+            </ProtectedRoute>
+          }
+        />
+
+        {/* ⭐ COURSE STUDENTS (NEW ROUTE) */}
+        <Route
+          path="/course/:id/students"
+          element={
+            <ProtectedRoute>
+              <CourseStudentsPage />
+            </ProtectedRoute>
+          }
+        />
+
+        {/* ⭐ OTHER MODULES */}
+        <Route
+          path="/batches"
+          element={
+            <ProtectedRoute>
+              <Batch />
+            </ProtectedRoute>
+          }
+        />
+        {/* Attendance (Smart Route by Batch) */}
+        <Route
+          path="/attendance/:batchId"
+          element={
+            <ProtectedRoute>
+              <AttendanceManagementPage />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/assessment-management"
+          element={
+            <ProtectedRoute>
+              <AssessmentManagement />
+            </ProtectedRoute>
+          }
+        />
+      </Routes>
+    </BrowserRouter>
+  );
+}
+
+export default App;
